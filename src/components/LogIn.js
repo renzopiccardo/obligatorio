@@ -6,7 +6,7 @@ class LogIn extends React.Component {
   render() {
     return (
       <>
-        <h2>Inicio de Sesión</h2>
+        <h2>Inicio de SesiÃ³n</h2>
         <div className="row mt-1">
           <div className="col">
             <input
@@ -20,7 +20,7 @@ class LogIn extends React.Component {
           <div className="col">
             <input
               type="password"
-              placeholder="Contraseña"
+              placeholder="ContraseÃ±a"
               className="form-control"
             />
           </div>
