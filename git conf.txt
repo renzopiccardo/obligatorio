@@ -1,0 +1,10 @@
+git add .
+git config --global user.name "Renzo P"
+git config --global user.email rp236804@fi365.ort.edu.uy
+git commit -m "Commit inicial"
+git remote add origin https://github.com/renzopiccardo/todolist3.git
+si te equivocas: git remote set-url origin https://github.com/renzopiccardo/obligatorio.git
+
+git pull
+git push
+git push --set-upstream origin master
