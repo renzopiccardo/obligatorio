@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 //import * as taskActions from './redux/actions/taskActions';
 import Header from "./components/Header";
 import LogIn from "./components/LogIn";
+import SignUp from "./components/SignUp";
 import PageNotFound from "./components/PageNotFound";
 
 class App extends React.Component {
@@ -18,6 +19,7 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route exact path="/" component={LogIn} />
+          <Route path="/sign-up" component={SignUp} />
           <Route component={PageNotFound} />
         </Switch>
       </div>
