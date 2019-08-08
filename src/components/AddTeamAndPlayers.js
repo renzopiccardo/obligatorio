@@ -55,7 +55,7 @@ class SignUp extends React.Component {
 				<form onSubmit={this.onSubmit}>
 					<div className="row mt-2">
 						<div className="col-4">
-							<label>Nombre</label>
+							<label>Nombre del equipo</label>
 							<input
 								type="text"
 								name="name"
@@ -70,11 +70,11 @@ class SignUp extends React.Component {
 
 					<div className="row mt-2">
 						<div className="col-4">
-							<label>Email</label>
+							<label>Color primario</label>
 							<input
-								type="email"
-								name="email"
-								value={email}
+								type="text"
+								name="colorPrimario"
+								value={colorPrimario}
 								onChange={this.handleChange}
 								className="form-control"
 								required
@@ -84,25 +84,11 @@ class SignUp extends React.Component {
 
 					<div className="row mt-2">
 						<div className="col-4">
-							<label>Contraseña</label>
+							<label>Color secundario</label>
 							<input
-								type="password"
-								name="password"
-								value={password}
-								onChange={this.handleChange}
-								className="form-control"
-								required
-							/>
-						</div>
-					</div>
-
-					<div className="row mt-2">
-						<div className="col-4">
-							<label>Repetir contraseña</label>
-							<input
-								type="password"
-								name="confirmPassword"
-								value={confirmPassword}
+								type="text"
+								name="colorSecundario"
+								value={colorSecundario}
 								onChange={this.handleChange}
 								className="form-control"
 								required
