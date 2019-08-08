@@ -15,6 +15,11 @@ const Header = props => {
         {" "}
         Sign Up{" "}
       </NavLink>
+      {" | "}
+      <NavLink to="/add-team" activeStyle={myStyle}>
+        {" "}
+        Add Team{" "}
+      </NavLink>
     </nav>
   );
 };

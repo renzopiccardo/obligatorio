@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
 import PageNotFound from "./components/PageNotFound";
+import AddTeamAndPlayers from "./components/AddTeamAndPlayers";
 
 class App extends React.Component {
   // constructor(props) {
@@ -19,6 +20,7 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route exact path="/" component={LogIn} />
+          <Route path="/add-team" component={AddTeamAndPlayers} />
           <Route path="/sign-up" component={SignUp} />
           <Route component={PageNotFound} />
         </Switch>
