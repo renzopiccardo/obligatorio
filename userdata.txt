@@ -1,0 +1,1 @@
+{"_id":"5d4b622db5f1650017f37dcb","name":"rp","password":"$2b$10$skRhKFeUS6myumvsLNoPceWoulMCkaeBG5elzi2U3l5VKYXxIULs2","email":"rp@gmail.com","championship":{"_id":"5d4b622db5f1650017f37dcc","isConfirmed":false},"__v":0}
