@@ -11,9 +11,9 @@ const Header = props => {
         Log In{" "}
       </NavLink>
       {" | "}
-      <NavLink to="/todolist" activeStyle={myStyle}>
+      <NavLink to="/sign-up" activeStyle={myStyle}>
         {" "}
-        ToDo List{" "}
+        Sign Up{" "}
       </NavLink>
     </nav>
   );

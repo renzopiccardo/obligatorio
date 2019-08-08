@@ -53,28 +53,28 @@ class SignUp extends React.Component {
           <div className="row mt-2">
             <div className="col-4">
               <label>Nombre</label>
-              <input type="text" name='name' value={name} className="form-control" required autofocus/>
+              <input type="text" name='name' value={name} onChange={this.handleChange} className="form-control" required autoFocus/>
             </div>
           </div>
 
           <div className="row mt-2">
             <div className="col-4">
               <label>Email</label>
-              <input type="email" name='email' value={email} className="form-control" required/>
+              <input type="email" name='email' value={email} onChange={this.handleChange} className="form-control" required/>
             </div>
           </div>
 
           <div className="row mt-2">
             <div className="col-4">
               <label>Contraseña</label>
-              <input type="password" name='password' value={password} className="form-control" required/>
+              <input type="password" name='password' value={password} onChange={this.handleChange} className="form-control" required/>
             </div>
           </div>
 
           <div className="row mt-2">
             <div className="col-4">
               <label>Repetir contraseña</label>
-              <input type="password" name='confirmPassword' value={confirmPassword} className="form-control" required/>
+              <input type="password" name='confirmPassword' value={confirmPassword} onChange={this.handleChange} className="form-control" required/>
             </div>
           </div>
 
