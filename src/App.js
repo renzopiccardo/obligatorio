@@ -26,7 +26,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="container mt-3">
-				<Header />
+				{/*<Header />*/}
 				<Router>
 					<Switch>
 						<Route exact path="/" component={LogIn} />

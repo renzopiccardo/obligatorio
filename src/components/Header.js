@@ -1,5 +1,14 @@
 import React from "react";
+import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { isUserLogged } from "./../selectors/userSelectors";
+import {
+	BrowserRouter as Router,
+	Route,
+	Link,
+	Redirect,
+	withRouter
+} from "react-router-dom";
 
 const Header = props => {
 	const myStyle = { color: "#F02222" };
@@ -21,4 +30,10 @@ const Header = props => {
 	);
 };
 
-export default Header;
+function mapStateToProps(state) {
+	return {
+		isUserLogged: isUserLogged(state)
+	};
+}
+
+export default connect(mapStateToProps)(Header);
