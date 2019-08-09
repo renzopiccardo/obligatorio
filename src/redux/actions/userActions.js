@@ -7,10 +7,15 @@ export function login(user) {
   };
 }
 
+export function signup(team) {
+  return {
+    type: ACTIONS.SIGNUP,
+    team
+  };
+}
+
 export function logout() {
   return {
     type: ACTIONS.LOGOUT
   };
 }
-
-

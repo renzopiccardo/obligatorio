@@ -103,10 +103,10 @@ function mapStateToProps(state) {
     isUserLogged: isUserLogged(state)
   };
 }
-
 const mapDispatchToProps = dispatch => {
   return {
     login: user => {
+      //dispatch llama a reducers
       dispatch(login(user));
     }
   };

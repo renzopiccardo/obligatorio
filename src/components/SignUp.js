@@ -8,7 +8,7 @@ import {
   Redirect,
   withRouter
 } from "react-router-dom";
-import { login } from "./../redux/actions/userActions";
+import { signup } from "./../redux/actions/userActions";
 import { signUpUser } from "./../services";
 
 class SignUp extends React.Component {
@@ -133,8 +133,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
   return {
-    login: user => {
-      dispatch(login(user));
+    signup: team => {
+      dispatch(signup(team));
     }
   };
 };
