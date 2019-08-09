@@ -4,7 +4,9 @@ import { NavLink } from "react-router-dom";
 const Header = props => {
 	const myStyle = { color: "#F02222" };
 
-	return (
+	return this.props.isUserLogged ? (
+		<Redirect to="/home/add-team" />
+	) : (
 		<nav>
 			<NavLink to="/" activeStyle={myStyle} exact>
 				{" "}

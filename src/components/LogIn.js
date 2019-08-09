@@ -51,7 +51,7 @@ class LogIn extends React.Component {
 		//const {handleChange} = this.props;
 
 		return this.props.isUserLogged ? (
-			<Redirect to="/home" />
+			<Redirect to="/home/add-team" />
 		) : (
 			<div className="mt-4">
 				<form onSubmit={this.onSubmit}>

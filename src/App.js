@@ -26,11 +26,10 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="container mt-3">
-				{/*<Header />*/}
+				<Header />
 				<Router>
 					<Switch>
 						<Route exact path="/" component={LogIn} />
-						<Route path="/add-team" component={AddTeamAndPlayers} />
 						<Route path="/sign-up" component={SignUp} />
 						<Route path="/home" component={Home} />
 						<Route component={PageNotFound} />

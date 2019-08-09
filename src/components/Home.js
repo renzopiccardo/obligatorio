@@ -11,6 +11,7 @@ import {
 	withRouter
 } from "react-router-dom";
 import PageNotFound from "./../components/PageNotFound";
+import LogOut from "./../components/LogOut";
 import AddTeamAndPlayers from "./../components/AddTeamAndPlayers";
 //import { signup } from "./../redux/actions/userActions";
 //import { signUpUser } from "./../services";
@@ -36,6 +37,13 @@ class Home extends React.Component {
 			<Redirect to="/" />
 		) : (
 			<div>
+				<div className="mt-4">
+					<div className="row mt-2">
+						<div className="col-4">
+							<LogOut />
+						</div>
+					</div>
+				</div>
 				<Router>
 					<Switch>
 						<Route path="/add-team" component={AddTeamAndPlayers} />

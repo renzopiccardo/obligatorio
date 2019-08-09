@@ -53,7 +53,7 @@ class SignUp extends React.Component {
 		const { name, email, password, confirmPassword } = this.state;
 
 		return this.props.isUserLogged ? (
-			<Redirect to="/home" />
+			<Redirect to="/home/add-team" />
 		) : (
 			<div>
 				<form onSubmit={this.onSubmit}>
