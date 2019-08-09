@@ -8,18 +8,18 @@ import {
 	Redirect,
 	withRouter
 } from "react-router-dom";
-import { login } from "./../redux/actions/userActions";
-import { logInUser } from "./../services";
+import { logout } from "./../redux/actions/userActions";
+import { logOutUser } from "./../services";
 
-class LogIn extends React.Component {
+class LogOut extends React.Component {
 	//navigateToTodolist = () => this.props.history.push("/todolist");
 
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			password: "",
-			email: ""
+			user: ""
+			//??
 		};
 	}
 
@@ -30,13 +30,13 @@ class LogIn extends React.Component {
 
 	onSubmit = event => {
 		event.preventDefault();
-		const { password, email } = this.state;
+		const { user } = this.state;
 		//const { dispatch } = this.props;
 
-		logInUser({ email, password })
+		logOutUser({ user })
 			.then(result => {
 				//dispatch(login(result.data));
-				this.props.login(result.data);
+				this.props.logout(result.data);
 				//alert("SUCCESS");
 				console.log(result);
 			})
@@ -47,46 +47,15 @@ class LogIn extends React.Component {
 	};
 
 	render() {
-		const { email, password } = this.state;
-		//const {handleChange} = this.props;
-
-		return this.props.isUserLogged ? (
+		return !this.props.isUserLogged ? (
 			<Redirect to="/home" />
 		) : (
 			<div className="mt-4">
 				<form onSubmit={this.onSubmit}>
-					<div className="row mt-2">
-						<div className="col-4">
-							<label>Email</label>
-							<input
-								type="email"
-								name="email"
-								value={email}
-								onChange={this.handleChange}
-								className="form-control"
-								required
-							/>
-						</div>
-					</div>
-
-					<div className="row mt-2">
-						<div className="col-4">
-							<label>Contraseña</label>
-							<input
-								type="password"
-								name="password"
-								value={password}
-								onChange={this.handleChange}
-								className="form-control"
-								required
-							/>
-						</div>
-					</div>
-
 					<div className="row mt-4">
 						<div className="col">
 							<button type="submit" className="btn btn-primary">
-								Iniciar Sesión
+								Cerrar Sesión
 							</button>
 						</div>
 					</div>
@@ -105,9 +74,9 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = dispatch => {
 	return {
-		login: user => {
+		logout: user => {
 			//dispatch llama a reducers
-			dispatch(login(user));
+			dispatch(logout(user));
 		}
 	};
 };
@@ -115,4 +84,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(LogIn);
+)(LogOut);
