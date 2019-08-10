@@ -116,12 +116,19 @@ class SignUp extends React.Component {
 
 					<div className="row mt-4">
 						<div className="col">
-							<button className="btn btn-primary">
-								Registrarse
-							</button>
+							<button className="btn btn-primary">Registrarse</button>
 						</div>
 					</div>
 				</form>
+
+				<div className="row mt-5">
+					<div className="col-4">
+						<h5>
+							¿Ya tienes cuenta?
+							<Route path="/" children={<Link to="/"> Iniciar sesión</Link>} />
+						</h5>
+					</div>
+				</div>
 			</div>
 		);
 	}

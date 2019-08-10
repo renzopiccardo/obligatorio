@@ -19,3 +19,19 @@ export function logout() {
 		type: ACTIONS.LOGOUT
 	};
 }
+
+export function addTeam(team) {
+	//
+	return {
+		type: ACTIONS.SIGNUP,
+		team
+	};
+}
+
+export function addResults(team) {
+	//
+	return {
+		type: ACTIONS.SIGNUP,
+		team
+	};
+}

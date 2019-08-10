@@ -17,7 +17,7 @@ const Header = props => {
 		<Redirect to="/home/add-team" />
 	) : (
 		<nav>
-			<NavLink to="/" activeStyle={myStyle} exact>
+			<NavLink to="/home/add-team" activeStyle={myStyle} exact>
 				{" "}
 				Log In{" "}
 			</NavLink>

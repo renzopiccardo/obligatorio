@@ -55,3 +55,15 @@ export function addTeamAndPlayers({
 		}
 	);
 }
+
+export function addResults({ userId }) {
+	return axios.post(
+		`${API_HOST}/teamfdsfsd/${userId}`,
+		{ userId },
+		{
+			headers: {
+				"Content-Type": "application/json"
+			}
+		}
+	);
+}
