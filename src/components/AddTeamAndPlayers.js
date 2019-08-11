@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { isUserLogged } from "./../selectors/userSelectors";
 import {
 	BrowserRouter as Router,
 	Route,
@@ -70,10 +71,11 @@ class AddTeamAndPlayers extends React.Component {
 			jugador1
 		} = this.state;
 
-		return !this.state.isLogged ? (
+		return !this.props.isUserLogged ? (
 			<Redirect to="/" />
 		) : (
 			<div>
+				<h1>Add team h1</h1>
 				<form onSubmit={this.onSubmit}>
 					<div className="row mt-2">
 						<div className="col-4">
@@ -149,7 +151,7 @@ class AddTeamAndPlayers extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		user: state.session.user
+		isUserLogged: isUserLogged(state)
 	};
 }
 

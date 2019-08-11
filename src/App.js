@@ -17,6 +17,7 @@ import SignUp from "./components/SignUp";
 import PageNotFound from "./components/PageNotFound";
 import Home from "./components/Home";
 import AddTeamAndPlayers from "./components/AddTeamAndPlayers";
+import AddResults from "./components/AddResults";
 
 class App extends React.Component {
 	// constructor(props) {
@@ -30,9 +31,18 @@ class App extends React.Component {
 				<Router>
 					<Switch>
 						<Route exact path="/" component={LogIn} />
-						<Route path="/sign-up" component={SignUp} />
-						<Route path="/home" component={Home} />
-						<Route component={PageNotFound} />
+						<Route exact path="/sign-up" component={SignUp} />
+
+						<div>
+							<Route path="/home" component={Home} />
+							<Route
+								exact
+								path="/home/add-team"
+								component={AddTeamAndPlayers}
+							/>
+							<Route exact path="/home/add-results" component={AddResults} />
+							{/*<Route component={PageNotFound} />*/}
+						</div>
 					</Switch>
 				</Router>
 			</div>

@@ -64,15 +64,6 @@ class Home extends React.Component {
 						</div>
 					</div>
 				</div>
-
-				<Router>
-					<Switch>
-						<Redirect exact from="/home" to="home/add-team" />
-						<Route path="home/add-team" component={AddTeamAndPlayers} />
-						<Route path="home/add-results" component={AddResults} />
-						<Route component={PageNotFound} />
-					</Switch>
-				</Router>
 			</div>
 		);
 	}

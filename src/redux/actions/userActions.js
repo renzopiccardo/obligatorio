@@ -23,7 +23,7 @@ export function logout() {
 export function addTeam(team) {
 	//
 	return {
-		type: ACTIONS.SIGNUP,
+		type: ACTIONS.ADD_TEAM,
 		team
 	};
 }
@@ -31,7 +31,7 @@ export function addTeam(team) {
 export function addResults(team) {
 	//
 	return {
-		type: ACTIONS.SIGNUP,
+		type: ACTIONS.ADD_RESULTS,
 		team
 	};
 }
