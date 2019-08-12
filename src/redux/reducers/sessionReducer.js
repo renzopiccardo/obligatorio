@@ -11,7 +11,9 @@ export default function sessionReducer(state = initialState, action) {
 		case ACTIONS.LOGIN:
 			return { ...state, user: action.user };
 		case ACTIONS.ADD_TEAM:
-			return { ...state, user: action.user }; //
+			return { 
+				...state, teams: [...state.teams, action.team]
+			}
 		case ACTIONS.ADD_PLAYER:
 			return { 
 				...state, players: [...state.players, action.player]

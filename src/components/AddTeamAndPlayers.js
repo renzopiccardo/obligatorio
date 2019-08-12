@@ -26,20 +26,24 @@ class AddTeamAndPlayers extends React.Component {
 			players: []
 		};
 	}
-
+/* 
 	componentDidUpdate(prevProps) {
 		if(prevProps.variableInProps !== this.props.variableInProps){
 		  this.setState({variableInState: this.props.variableInProps })
 		}
 	  }
-
+*/
 	handleChange = event => {
 		const name = event.target.name;
 		this.setState({ [name]: event.target.value });
 	};
 
 	addPlayerFN = player => {
-		this.props.dispatch(userActions.addPlayer(player));
+		let players = [...this.state.players];
+		players.push(player);
+		this.setState({players})
+		//this.props.dispatch(userActions.addPlayer(player));
+		//...state, players: [...state.players, action.player]
 	};
 
 	deletePlayer = numero => {
@@ -59,7 +63,7 @@ class AddTeamAndPlayers extends React.Component {
 			this.setState({ confirmPassword: "", password: "" });
 			return;
 		}
-		
+		*/
 		addTeamAndPlayers({
 			nombreEquipo,
 			colorPrimario,
@@ -71,10 +75,10 @@ class AddTeamAndPlayers extends React.Component {
 				console.log(result);
 			})
 			.catch(err => {
-				alert("ERROR");
+				alert("ERROR en onSubmit - addTeamAndPlayers");
 				console.log(err);
 			});
-			*/
+			
 	};
 
 	render() {

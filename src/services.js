@@ -45,7 +45,9 @@ export function addTeamAndPlayers({
 	secondatyColor,
 	players
 }) {
+	alert("se esta ejecutando addTeamAndPlayers en services");
 	return axios.post(
+		
 		`${API_HOST}/team/${userId}`,
 		{ name, primaryColor, secondatyColor, players },
 		{
