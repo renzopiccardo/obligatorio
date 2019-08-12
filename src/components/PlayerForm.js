@@ -38,10 +38,11 @@ class PlayerForm extends React.Component {
 
 		return (
 			<div>
-				<h2> Player Form </h2>
+				<h2>Agregar Jugador</h2>
 				<form onSubmit={this.submitAddPlayer}>
 					<div className="row">
 						<div className="col-3">
+							<label>Nombre</label>
 							<input
 								className="form-control"
 								type="text"
@@ -53,6 +54,7 @@ class PlayerForm extends React.Component {
 						</div>
 
 						<div className="col-3">
+							<label>Apellido</label>
 							<input
 								className="form-control"
 								type="text"
@@ -63,6 +65,7 @@ class PlayerForm extends React.Component {
 							/>
 						</div>
 						<div className="col-3">
+							<label>Numero</label>
 							<input
 								className="form-control"
 								type="text"
@@ -73,10 +76,11 @@ class PlayerForm extends React.Component {
 							/>
 						</div>
 						<div className="col-3">
+							<label>Fecha de nacimiento</label>
 							<input
 								className="form-control"
 								type="text"
-								placeholder="Ingrese la fec..."
+								placeholder="Ingrese la fecha de nacimiento..."
 								name="fechaNacimiento"
 								value={fechaNacimiento}
 								onChange={this.handleChange}
@@ -84,7 +88,7 @@ class PlayerForm extends React.Component {
 						</div>
 						<div className="col-sm-3 mt-4">
 							<button className="btn btn-block btn-primary">
-								Agregar Jugador
+								Agregar
 							</button>
 						</div>
 					</div>

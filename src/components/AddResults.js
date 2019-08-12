@@ -91,11 +91,11 @@ class AddResults extends React.Component {
 				<form onSubmit={this.onSubmit}>
 					<div className="row mt-2">
 						<div className="col-4">
-							<label>resultado</label>
+							<label>Equipo 1</label>
 							<input
 								type="text"
 								name="name"
-								value={team}
+								value={team1}
 								onChange={this.handleChange}
 								className="form-control"
 								required
@@ -104,9 +104,39 @@ class AddResults extends React.Component {
 						</div>
 					</div>
 
+					<div className="row mt-2">
+						<div className="col-4">
+							<label>Equipo 2</label>
+							<input
+								type="text"
+								name="name"
+								value={team2}
+								onChange={this.handleChange}
+								className="form-control"
+								required
+								
+							/>
+						</div>
+					</div>
+
+					<div className="row mt-2">
+						<div className="col-4">
+							<label>Evento</label>
+							<input
+								type="text"
+								name="name"
+								value={events}//
+								onChange={this.handleChange}
+								className="form-control"
+								required
+								
+							/>
+						</div>
+					</div>
+
 					<div className="row mt-4">
 						<div className="col">
-							<button className="btn btn-primary">save sdasd</button>
+							<button className="btn btn-primary">Añadir resultados</button>
 						</div>
 					</div>
 				</form>

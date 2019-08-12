@@ -88,10 +88,10 @@ class AddTeamAndPlayers extends React.Component {
 		return !this.props.isUserLogged ? (
 			<Redirect to="/" />
 		) : (
-			<div>
-				<h1>Add team h1</h1>
+			<div className="mt-4">
+				<h1>Agregar Equipo</h1>
 				<form onSubmit={this.onSubmit}>
-					<div className="row mt-2">
+					<div className="row mt-4">
 						<div className="col-4">
 							<label>Nombre del equipo</label>
 							<input
@@ -134,7 +134,7 @@ class AddTeamAndPlayers extends React.Component {
 						</div>
 					</div>
 
-					<div className="row mt-2">
+					<div className="row mt-4">
 						<div className="col">
 							<PlayerForm addPlayerFN={this.addPlayerFN} />
 							<PlayerList players={players} deletePlayer={this.deletePlayer} />
