@@ -17,7 +17,7 @@ class Player extends React.Component {
 							className="btn btn-danger float-right"
 							aria-label="Close"
 							style={{ outline: "none" }}
-							onClick={() => this.props.deleteTask(numero)}
+							onClick={() => this.props.deletePlayer(numero)}
 						>
 							<span aria-hidden="true">&times;</span>
 						</button>

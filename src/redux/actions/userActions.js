@@ -36,6 +36,14 @@ export function addPlayer(player) {
 	};
 }
 
+export function deletePlayer(numero) {
+	//
+	return {
+		type: ACTIONS.DELETE_PLAYER,
+		numero
+	};
+}
+
 export function addResults(team) {
 	//
 	return {

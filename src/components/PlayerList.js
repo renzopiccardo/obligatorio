@@ -11,7 +11,7 @@ const PlayerList = props => {
 					apellido={apellido}
 					numero={numero}
 					fechaNacimiento={fechaNacimiento}
-					deleteTask={props.deleteTask}
+					deletePlayer={props.deletePlayer}
 				/>
 			</Fragment>
 		)

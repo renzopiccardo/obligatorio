@@ -10,7 +10,7 @@ import {
 	Redirect,
 	withRouter
 } from "react-router-dom";
-//import * as taskActions from './redux/actions/taskActions';
+
 import Header from "./components/Header";
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";

@@ -8,7 +8,10 @@ import {
 	Redirect,
 	withRouter
 } from "react-router-dom";
+import * as userActions from "./../redux/actions/userActions";
 import { addTeamAndPlayers } from "./../services";
+import PlayerForm from "./../components/PlayerForm";
+import PlayerList from "./../components/PlayerList";
 
 class AddTeamAndPlayers extends React.Component {
 	//navigateToTodolist = () => this.props.history.push("/todolist");
@@ -20,8 +23,7 @@ class AddTeamAndPlayers extends React.Component {
 			team: "",
 			colorPrimario: "",
 			colorSecundario: "",
-			players: [],
-			jugador1: ""
+			players: []
 		};
 	}
 
@@ -30,27 +32,33 @@ class AddTeamAndPlayers extends React.Component {
 		this.setState({ [name]: event.target.value });
 	};
 
+	addPlayerFN = player => {
+		this.props.dispatch(userActions.addPlayer(player));
+	};
+
+	deletePlayer = numero => {
+		this.props.dispatch(userActions.deletePlayer(numero));
+	};
+
 	onSubmit = event => {
 		event.preventDefault();
 		const {
-			team,
+			nombreEquipo,
 			colorPrimario,
 			colorSecundario,
-			players,
-			jugador1
+			players
 		} = this.state;
 		/*
 		if (password !== confirmPassword) {
 			this.setState({ confirmPassword: "", password: "" });
 			return;
 		}
-		*/
+		
 		addTeamAndPlayers({
-			team,
+			nombreEquipo,
 			colorPrimario,
 			colorSecundario,
-			players,
-			jugador1
+			players
 		})
 			.then(result => {
 				alert("SUCCESS");
@@ -60,15 +68,15 @@ class AddTeamAndPlayers extends React.Component {
 				alert("ERROR");
 				console.log(err);
 			});
+			*/
 	};
 
 	render() {
 		const {
-			team,
+			nombreEquipo,
 			colorPrimario,
 			colorSecundario,
-			players,
-			jugador1
+			players
 		} = this.state;
 
 		return !this.props.isUserLogged ? (
@@ -82,8 +90,8 @@ class AddTeamAndPlayers extends React.Component {
 							<label>Nombre del equipo</label>
 							<input
 								type="text"
-								name="name"
-								value={team}
+								name="nombreEquipo"
+								value={nombreEquipo}
 								onChange={this.handleChange}
 								className="form-control"
 								required
@@ -121,20 +129,13 @@ class AddTeamAndPlayers extends React.Component {
 					</div>
 
 					<div className="row mt-2">
-						<div className="col-4">
-							<label>Jugador 1</label>
-							<input
-								type="text"
-								name="jugador1"
-								value={jugador1}
-								onChange={this.handleChange}
-								className="form-control"
-								required
-							/>
+						<div className="col">
+							<PlayerForm addPlayerFN={this.addPlayerFN} />
+							<PlayerList players={players} deletePlayer={this.deletePlayer} />
 						</div>
 					</div>
 
-					<div className="row mt-4">
+					<div className="row mt-5">
 						<div className="col">
 							<button className="btn btn-primary">
 								Registrar equipo y jugadores
@@ -155,4 +156,17 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps)(AddTeamAndPlayers);
+const mapDispatchToProps = dispatch => {
+	return {
+		addTeamAndPlayers: team => {
+			//dispatch llama a reducers
+			dispatch(addTeamAndPlayers(team));
+		},
+		dispatch
+	};
+};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(AddTeamAndPlayers);

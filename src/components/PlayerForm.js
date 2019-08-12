@@ -15,10 +15,10 @@ class PlayerForm extends React.Component {
 	submitAddPlayer = event => {
 		event.preventDefault();
 
-		const { addPlayer } = this.props;
+		const { addPlayerFN } = this.props;
 		const { nombre, apellido, numero, fechaNacimiento } = this.state;
 
-		addPlayer(nombre, apellido, numero, fechaNacimiento);
+		addPlayerFN({ nombre, apellido, numero, fechaNacimiento });
 
 		this.setState({
 			nombre: "",
@@ -47,6 +47,7 @@ class PlayerForm extends React.Component {
 								type="text"
 								placeholder="Ingrese el nombre..."
 								value={nombre}
+								name="nombre"
 								onChange={this.handleChange}
 							/>
 						</div>
@@ -56,6 +57,7 @@ class PlayerForm extends React.Component {
 								className="form-control"
 								type="text"
 								placeholder="Ingrese el apellido..."
+								name="apellido"
 								value={apellido}
 								onChange={this.handleChange}
 							/>
@@ -65,6 +67,7 @@ class PlayerForm extends React.Component {
 								className="form-control"
 								type="text"
 								placeholder="Ingrese el numero..."
+								name="numero"
 								value={numero}
 								onChange={this.handleChange}
 							/>
@@ -74,11 +77,12 @@ class PlayerForm extends React.Component {
 								className="form-control"
 								type="text"
 								placeholder="Ingrese la fec..."
+								name="fechaNacimiento"
 								value={fechaNacimiento}
 								onChange={this.handleChange}
 							/>
 						</div>
-						<div className="col-sm-3">
+						<div className="col-sm-3 mt-4">
 							<button className="btn btn-block btn-primary">
 								Agregar Jugador
 							</button>
