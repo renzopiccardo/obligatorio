@@ -27,6 +27,12 @@ class AddTeamAndPlayers extends React.Component {
 		};
 	}
 
+	componentDidUpdate(prevProps) {
+		if(prevProps.variableInProps !== this.props.variableInProps){
+		  this.setState({variableInState: this.props.variableInProps })
+		}
+	  }
+
 	handleChange = event => {
 		const name = event.target.name;
 		this.setState({ [name]: event.target.value });

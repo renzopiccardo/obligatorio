@@ -17,12 +17,31 @@ class AddResults extends React.Component {
 		super(props);
 
 		this.state = {
-			team: "",
-			colorPrimario: "",
-			colorSecundario: "",
-			players: [],
-			jugador1: ""
+			team1: "",
+			team2: "",
+			events: []
 		};
+		/*
+		"team1": {
+			"id": "string",
+			"players": [
+			  "string"
+			]
+		  },
+		  "team2": {
+			"id": "string",
+			"players": [
+			  "string"
+			]
+		  },
+		  "events": [
+			{
+			  "playerId": "string",
+			  "minute": 0,
+			  "type": "GOAL"
+			}
+		  ]
+		  */
 	}
 
 	handleChange = event => {
@@ -33,11 +52,9 @@ class AddResults extends React.Component {
 	onSubmit = event => {
 		event.preventDefault();
 		const {
-			team,
-			colorPrimario,
-			colorSecundario,
-			players,
-			jugador1
+			team1,
+			team2,
+			events
 		} = this.state;
 		/*
 		if (password !== confirmPassword) {
@@ -46,11 +63,9 @@ class AddResults extends React.Component {
 		}
 		*/
 		addResults({
-			team,
-			colorPrimario,
-			colorSecundario,
-			players,
-			jugador1
+			team1,
+			team2,
+			events
 		})
 			.then(result => {
 				alert("SUCCESS");
@@ -64,11 +79,9 @@ class AddResults extends React.Component {
 
 	render() {
 		const {
-			team,
-			colorPrimario,
-			colorSecundario,
-			players,
-			jugador1
+			team1,
+			team2,
+			events
 		} = this.state;
 
 		return !this.props.isUserLogged ? (
