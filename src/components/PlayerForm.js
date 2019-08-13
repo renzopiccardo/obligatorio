@@ -47,8 +47,8 @@ class PlayerForm extends React.Component {
 								className="form-control"
 								type="text"
 								placeholder="Ingrese el nombre..."
+								name="name"
 								value={name}
-								name="nombre"
 								onChange={this.handleChange}
 							/>
 						</div>
@@ -59,7 +59,7 @@ class PlayerForm extends React.Component {
 								className="form-control"
 								type="text"
 								placeholder="Ingrese el apellido..."
-								name="apellido"
+								name="lastName"
 								value={lastName}
 								onChange={this.handleChange}
 							/>
@@ -68,9 +68,9 @@ class PlayerForm extends React.Component {
 							<label>Fecha de nacimiento</label>
 							<input
 								className="form-control"
-								type="text"
+								type="date"
 								placeholder="Ingrese la fecha de nacimiento..."
-								name="fechaNacimiento"
+								name="birthDate"
 								value={birthDate}
 								onChange={this.handleChange}
 							/>
@@ -79,9 +79,9 @@ class PlayerForm extends React.Component {
 							<label>Numero</label>
 							<input
 								className="form-control"
-								type="text"
+								type="number"
 								placeholder="Ingrese el numero..."
-								name="numero"
+								name="number"
 								value={number}
 								onChange={this.handleChange}
 							/>

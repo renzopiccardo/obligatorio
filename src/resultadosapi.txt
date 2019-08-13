@@ -1,0 +1,16 @@
+{_id: "5d520643dbb6e8001718aab1",…}
+championshipId: "5d4b7943b5f1650017f37f4e"
+name: "nombreequipopruebatodojunto"
+players: [{_id: "5d520643dbb6e8001718aab2", name: "Nombre1", lastName: "Apellido2",…}]
+0: {_id: "5d520643dbb6e8001718aab2", name: "Nombre1", lastName: "Apellido2",…}
+birthDate: "2019-08-02T00:00:00.000Z"
+lastName: "Apellido2"
+name: "Nombre1"
+number: 1
+_id: "5d520643dbb6e8001718aab2"
+primaryColor: "#00ff80"
+secondaryColor: "#ff00ff"
+__v: 0
+_id: "5d520643dbb6e8001718aab1"
+
+https://taller-frontend.herokuapp.com/api/team/5d520643dbb6e8001718aab1

@@ -42,14 +42,14 @@ export function addTeamAndPlayersFN({
 	userId,
 	name,
 	primaryColor,
-	secondatyColor,
+	secondaryColor,
 	players
 }) {
-	alert("se esta ejecutando addTeamAndPlayers en services");
+	//alert(userId + " " + name + " " + primaryColor + " " + secondaryColor + " " + players[0].birthDate);
 	return axios.post(
 		
 		`${API_HOST}/team/${userId}`,
-		{ name, primaryColor, secondatyColor, players },
+		{ name, primaryColor, secondaryColor, players },
 		{
 			headers: {
 				"Content-Type": "application/json"

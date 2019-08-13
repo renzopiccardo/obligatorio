@@ -21,9 +21,9 @@ class AddTeamAndPlayers extends React.Component {
 		super(props);
 
 		this.state = {
-			team: "",
-			colorPrimario: "",
-			colorSecundario: "",
+			name: "",
+			primaryColor: "",
+			secondaryColor: "",
 			players: []
 		};
 	}
@@ -47,19 +47,19 @@ class AddTeamAndPlayers extends React.Component {
 		//...state, players: [...state.players, action.player]
 	};
 
-	deletePlayer = numero => {
+	deletePlayer = number => {
 		//this.props.dispatch(deletePlayer(numero));
 		let players = [...this.state.players];
-		players.filter(p => p.numero !== numero);;
+		players =  players.filter(p => p.number !== number);;
 		this.setState({players})
 	};
 
 	onSubmit = event => {
 		event.preventDefault();
 		const {
-			nombreEquipo,
-			colorPrimario,
-			colorSecundario,
+			name,
+			primaryColor,
+			secondaryColor,
 			players
 		} = this.state;
 		/*
@@ -70,13 +70,13 @@ class AddTeamAndPlayers extends React.Component {
 		*/
 		addTeamAndPlayersFN({
 			userId: this.props.user._id, 
-			nombreEquipo,
-			colorPrimario,
-			colorSecundario,
+			name,
+			primaryColor,
+			secondaryColor,
 			players
 		})
 			.then(result => {
-				this.props.addTeamAndPlayers(result.data);
+				this.props.addTeam(result.data);
 				//alert("SUCCESS");
 				console.log(result);
 			})
@@ -89,9 +89,9 @@ class AddTeamAndPlayers extends React.Component {
 
 	render() {
 		const {
-			nombreEquipo,
-			colorPrimario,
-			colorSecundario,
+			name,
+			primaryColor,
+			secondaryColor,
 			players
 		} = this.state;
 
@@ -116,8 +116,8 @@ class AddTeamAndPlayers extends React.Component {
 									<label>Nombre del equipo</label>
 									<input
 										type="text"
-										name="nombreEquipo"
-										value={nombreEquipo}
+										name="name"
+										value={name}
 										onChange={this.handleChange}
 										className="form-control"
 										required
@@ -131,8 +131,8 @@ class AddTeamAndPlayers extends React.Component {
 									<label>Color primario</label>
 									<input
 										type="color"
-										name="colorPrimario"
-										value={colorPrimario}
+										name="primaryColor"
+										value={primaryColor}
 										onChange={this.handleChange}
 										className="form-control"
 										required
@@ -145,8 +145,8 @@ class AddTeamAndPlayers extends React.Component {
 									<label>Color secundario</label>
 									<input
 										type="color"
-										name="colorSecundario"
-										value={colorSecundario}
+										name="secondaryColor"
+										value={secondaryColor}
 										onChange={this.handleChange}
 										className="form-control"
 										required
