@@ -67,13 +67,15 @@ class AddTeamAndPlayers extends React.Component {
 			return;
 		}
 		*/
-		addTeamAndPlayersFN({
-			userId: this.props.user._id, 
-			name,
-			primaryColor,
-			secondaryColor,
-			players
-		})
+
+		////if(players.length >= 5){
+			addTeamAndPlayersFN({
+				userId: this.props.user._id, 
+				name,
+				primaryColor,
+				secondaryColor,
+				players
+			})
 			.then(result => {
 				this.props.addTeam(result.data);
 				alert("SUCCESS addTeam");
@@ -83,10 +85,14 @@ class AddTeamAndPlayers extends React.Component {
 				alert("ERROR en onSubmit - addTeamAndPlayers");
 				console.log(err);
 			});
-			
+				
+		//}
+		//else{
+		//	alert("Debe agregar al menos 5 jugadores");
+		//}
 	};
-
-	render() {
+		
+		render() {
 		const {
 			name,
 			primaryColor,
