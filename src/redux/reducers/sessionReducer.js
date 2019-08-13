@@ -1,7 +1,8 @@
 import { ACTIONS } from "../../constants";
 
 const initialState = {
-	user: undefined
+	user: undefined,
+	teams: []
 };
 
 export default function sessionReducer(state = initialState, action) {
@@ -13,14 +14,8 @@ export default function sessionReducer(state = initialState, action) {
 		case ACTIONS.ADD_TEAM:
 				let teams = [...state.teams];
 				teams.push(action.team);
-			return teams
+			return teams;
 			//return [...state, teams]
-		case ACTIONS.ADD_PLAYER:
-			return { 
-				...state, players: [...state.players, action.player]
-			}
-		case ACTIONS.DELETE_PLAYER:
-			return state.players.filter(t => t.numero !== action.numero); //
 		case ACTIONS.ADD_RESULTS:
 			return { ...state, user: action.user }; //
 		default:

@@ -9,7 +9,6 @@ import {
 	withRouter
 } from "react-router-dom";
 import { addTeam } from "./../redux/actions/userActions";
-import { deletePlayer } from "./../redux/actions/userActions";
 import { addTeamAndPlayersFN } from "./../services";
 import PlayerForm from "./../components/PlayerForm";
 import PlayerList from "./../components/PlayerList";
@@ -77,7 +76,7 @@ class AddTeamAndPlayers extends React.Component {
 		})
 			.then(result => {
 				this.props.addTeam(result.data);
-				//alert("SUCCESS");
+				alert("SUCCESS addTeam");
 				console.log(result);
 			})
 			.catch(err => {
@@ -125,7 +124,6 @@ class AddTeamAndPlayers extends React.Component {
 									/>
 								</div>
 							</div>
-
 							<div className="row mt-2">
 								<div className="col-4">
 									<label>Color primario</label>
@@ -139,7 +137,6 @@ class AddTeamAndPlayers extends React.Component {
 									/>
 								</div>
 							</div>
-
 							<div className="row mt-2">
 								<div className="col-4">
 									<label>Color secundario</label>
@@ -153,8 +150,6 @@ class AddTeamAndPlayers extends React.Component {
 									/>
 								</div>
 							</div>
-
-
 
 							<div className="row mt-5">
 								<div className="col">
