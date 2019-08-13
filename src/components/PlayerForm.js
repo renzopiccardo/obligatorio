@@ -5,10 +5,10 @@ class PlayerForm extends React.Component {
 		super(props);
 
 		this.state = {
-			nombre: "",
-			apellido: "",
-			numero: "",
-			fechaNacimiento: ""
+			name: "",
+			lastName: "",
+			birthDate: "",
+			number: ""
 		};
 	}
 
@@ -16,15 +16,15 @@ class PlayerForm extends React.Component {
 		event.preventDefault();
 
 		const { addPlayerFN } = this.props;
-		const { nombre, apellido, numero, fechaNacimiento } = this.state;
+		const { name, lastName, birthDate, number } = this.state;
 
-		addPlayerFN({ nombre, apellido, numero, fechaNacimiento });
+		addPlayerFN({ name, lastName, birthDate, number });
 
 		this.setState({
-			nombre: "",
-			apellido: "",
-			numero: "",
-			fechaNacimiento: ""
+			name: "",
+			lastName: "",
+			birthDate: "",
+			number: ""
 		});
 	};
 
@@ -34,7 +34,7 @@ class PlayerForm extends React.Component {
 	};
 
 	render() {
-		const { nombre, apellido, numero, fechaNacimiento } = this.state;
+		const { name, lastName, birthDate, number } = this.state;
 
 		return (
 			<div>
@@ -47,7 +47,7 @@ class PlayerForm extends React.Component {
 								className="form-control"
 								type="text"
 								placeholder="Ingrese el nombre..."
-								value={nombre}
+								value={name}
 								name="nombre"
 								onChange={this.handleChange}
 							/>
@@ -60,18 +60,7 @@ class PlayerForm extends React.Component {
 								type="text"
 								placeholder="Ingrese el apellido..."
 								name="apellido"
-								value={apellido}
-								onChange={this.handleChange}
-							/>
-						</div>
-						<div className="col-3">
-							<label>Numero</label>
-							<input
-								className="form-control"
-								type="text"
-								placeholder="Ingrese el numero..."
-								name="numero"
-								value={numero}
+								value={lastName}
 								onChange={this.handleChange}
 							/>
 						</div>
@@ -82,7 +71,18 @@ class PlayerForm extends React.Component {
 								type="text"
 								placeholder="Ingrese la fecha de nacimiento..."
 								name="fechaNacimiento"
-								value={fechaNacimiento}
+								value={birthDate}
+								onChange={this.handleChange}
+							/>
+						</div>
+						<div className="col-3">
+							<label>Numero</label>
+							<input
+								className="form-control"
+								type="text"
+								placeholder="Ingrese el numero..."
+								name="numero"
+								value={number}
 								onChange={this.handleChange}
 							/>
 						</div>

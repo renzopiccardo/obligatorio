@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { isUserLogged } from "./../selectors/userSelectors";
+import { isUserLogged, getUser } from "./../selectors/userSelectors";
 import {
 	BrowserRouter as Router,
 	Route,
@@ -8,8 +8,9 @@ import {
 	Redirect,
 	withRouter
 } from "react-router-dom";
-import * as userActions from "./../redux/actions/userActions";
-import { addTeamAndPlayers } from "./../services";
+import { addTeam } from "./../redux/actions/userActions";
+import { deletePlayer } from "./../redux/actions/userActions";
+import { addTeamAndPlayersFN } from "./../services";
 import PlayerForm from "./../components/PlayerForm";
 import PlayerList from "./../components/PlayerList";
 
@@ -47,7 +48,10 @@ class AddTeamAndPlayers extends React.Component {
 	};
 
 	deletePlayer = numero => {
-		this.props.dispatch(userActions.deletePlayer(numero));
+		//this.props.dispatch(deletePlayer(numero));
+		let players = [...this.state.players];
+		players.filter(p => p.numero !== numero);;
+		this.setState({players})
 	};
 
 	onSubmit = event => {
@@ -64,14 +68,16 @@ class AddTeamAndPlayers extends React.Component {
 			return;
 		}
 		*/
-		addTeamAndPlayers({
+		addTeamAndPlayersFN({
+			userId: this.props.user._id, 
 			nombreEquipo,
 			colorPrimario,
 			colorSecundario,
 			players
 		})
 			.then(result => {
-				alert("SUCCESS");
+				this.props.addTeamAndPlayers(result.data);
+				//alert("SUCCESS");
 				console.log(result);
 			})
 			.catch(err => {
@@ -93,66 +99,74 @@ class AddTeamAndPlayers extends React.Component {
 			<Redirect to="/" />
 		) : (
 			<div className="mt-4">
-				<h1>Agregar Equipo</h1>
-				<form onSubmit={this.onSubmit}>
-					<div className="row mt-4">
-						<div className="col-4">
-							<label>Nombre del equipo</label>
-							<input
-								type="text"
-								name="nombreEquipo"
-								value={nombreEquipo}
-								onChange={this.handleChange}
-								className="form-control"
-								required
-								autoFocus
-							/>
-						</div>
-					</div>
 
-					<div className="row mt-2">
-						<div className="col-4">
-							<label>Color primario</label>
-							<input
-								type="color"
-								name="colorPrimario"
-								value={colorPrimario}
-								onChange={this.handleChange}
-								className="form-control"
-								required
-							/>
-						</div>
+				<div className="row mt-4">
+					<div className="col">
+						<PlayerForm addPlayerFN={this.addPlayerFN} />
+						<PlayerList players={players} deletePlayer={this.deletePlayer} />
 					</div>
+				</div>
 
-					<div className="row mt-2">
-						<div className="col-4">
-							<label>Color secundario</label>
-							<input
-								type="text"
-								name="colorSecundario"
-								value={colorSecundario}
-								onChange={this.handleChange}
-								className="form-control"
-								required
-							/>
-						</div>
-					</div>
+				<div className="row mt-4">
+					<div className="col">
+						<h1>Agregar Equipo</h1>
+						<form onSubmit={this.onSubmit}>
+							<div className="row mt-4">
+								<div className="col-4">
+									<label>Nombre del equipo</label>
+									<input
+										type="text"
+										name="nombreEquipo"
+										value={nombreEquipo}
+										onChange={this.handleChange}
+										className="form-control"
+										required
+										autoFocus
+									/>
+								</div>
+							</div>
 
-					<div className="row mt-4">
-						<div className="col">
-							<PlayerForm addPlayerFN={this.addPlayerFN} />
-							<PlayerList players={players} deletePlayer={this.deletePlayer} />
-						</div>
-					</div>
+							<div className="row mt-2">
+								<div className="col-4">
+									<label>Color primario</label>
+									<input
+										type="color"
+										name="colorPrimario"
+										value={colorPrimario}
+										onChange={this.handleChange}
+										className="form-control"
+										required
+									/>
+								</div>
+							</div>
 
-					<div className="row mt-5">
-						<div className="col">
-							<button className="btn btn-primary">
-								Registrar equipo y jugadores
-							</button>
-						</div>
+							<div className="row mt-2">
+								<div className="col-4">
+									<label>Color secundario</label>
+									<input
+										type="color"
+										name="colorSecundario"
+										value={colorSecundario}
+										onChange={this.handleChange}
+										className="form-control"
+										required
+									/>
+								</div>
+							</div>
+
+
+
+							<div className="row mt-5">
+								<div className="col">
+									<button className="btn btn-primary">
+										Registrar equipo y jugadores
+									</button>
+								</div>
+							</div>
+						</form>
 					</div>
-				</form>
+				</div>
+
 			</div>
 		);
 	}
@@ -162,15 +176,16 @@ class AddTeamAndPlayers extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		isUserLogged: isUserLogged(state)
+		isUserLogged: isUserLogged(state),
+		user: getUser(state)
 	};
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		addTeamAndPlayers: team => {
+		addTeam: team => {
 			//dispatch llama a reducers
-			dispatch(addTeamAndPlayers(team));
+			dispatch(addTeam(team));
 		},
 		dispatch
 	};

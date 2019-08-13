@@ -3,14 +3,14 @@ import Player from "./Player";
 
 const PlayerList = props => {
 	return props.players.map(
-		({ nombre, apellido, numero, fechaNacimiento }, index) => (
+		({ name, lastName, birthDate, number }, index) => (
 			<Fragment key={index}>
 				<hr />
 				<Player
-					nombre={nombre}
-					apellido={apellido}
-					numero={numero}
-					fechaNacimiento={fechaNacimiento}
+					name={name}
+					lastName={lastName}
+					birthDate={birthDate}
+					number={number}
 					deletePlayer={props.deletePlayer}
 				/>
 			</Fragment>

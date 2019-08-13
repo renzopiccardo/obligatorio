@@ -38,7 +38,7 @@ export function getTeam(teamId) {
 	return axios.get(`${API_HOST}/team/${teamId}`);
 }
 
-export function addTeamAndPlayers({
+export function addTeamAndPlayersFN({
 	userId,
 	name,
 	primaryColor,
