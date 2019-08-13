@@ -108,7 +108,7 @@ class AddTeamAndPlayers extends React.Component {
 
 				<div className="row mt-4">
 					<div className="col">
-						<h1>Agregar Equipo</h1>
+						<h2>Agregar Equipo</h2>
 						<form onSubmit={this.onSubmit}>
 							<div className="row mt-4">
 								<div className="col-4">
@@ -123,8 +123,6 @@ class AddTeamAndPlayers extends React.Component {
 										autoFocus
 									/>
 								</div>
-							</div>
-							<div className="row mt-2">
 								<div className="col-4">
 									<label>Color primario</label>
 									<input
@@ -136,8 +134,6 @@ class AddTeamAndPlayers extends React.Component {
 										required
 									/>
 								</div>
-							</div>
-							<div className="row mt-2">
 								<div className="col-4">
 									<label>Color secundario</label>
 									<input
