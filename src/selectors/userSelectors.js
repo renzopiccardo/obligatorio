@@ -7,7 +7,7 @@ export const getUser = state => {
 };
 
 export const getChampionshipId = state => {
-	return state.session.user.championship;//
+	return state.session.user.championship._id;//
 };
 
 export const getNumberOfTeams = state => {

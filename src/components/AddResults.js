@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 import { getAllTeamsByChampionshipId, getAllMatchesByChampionshipId } from "../services";
 import EditMatch from "./../components/EditMatch";
-import { addResults } from "./../redux/actions/userActions";
+import { addResults, getAllTeams, getAllMatches } from "./../redux/actions/userActions";
 
 class AddResults extends React.Component {
 
@@ -24,12 +24,14 @@ class AddResults extends React.Component {
 	}
 
 	componentDidMount() {
-		getAllTeamsByChampionshipId({
-			championshipId: this.props.championshipId._id,
-		})
+		getAllTeamsByChampionshipId({championshipId: this.props.championshipId})
 			.then(result => {
 				this.props.getAllTeams(result.data);
-				alert("SUCCESS getAllTeamsByChampionshipId");
+
+				let teams = [...this.state.teams];
+				teams = result.data;
+				this.setState({ teams });
+				//alert("SUCCESS getAllTeamsByChampionshipId");
 				console.log(result);
 			})
 			.catch(err => {
@@ -37,12 +39,14 @@ class AddResults extends React.Component {
 				console.log(err);
 			});
 
-		getAllMatchesByChampionshipId({
-			championshipId: this.props.championshipId._id,
-		})
+		getAllMatchesByChampionshipId({championshipId: this.props.championshipId})
 			.then(result => {
 				this.props.getAllMatches(result.data);
-				alert("SUCCESS getAllMatchesByChampionshipId");
+
+				let matches = [...this.state.matches];
+				matches = result.data;
+				this.setState({ matches });
+				//alert("SUCCESS getAllMatchesByChampionshipId");
 				console.log(result);
 			})
 			.catch(err => {
@@ -91,8 +95,13 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
 	return {
 		addResults: result => {
-			//dispatch llama a reducers
 			dispatch(addResults(result));
+		},
+		getAllTeams: result => {
+			dispatch(getAllTeams(result));
+		},
+		getAllMatches: result => {
+			dispatch(getAllMatches(result));
 		},
 		dispatch
 	};

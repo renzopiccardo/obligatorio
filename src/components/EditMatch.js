@@ -8,15 +8,16 @@ import {
 	Redirect,
 	withRouter
 } from "react-router-dom";
-import { getMatch } from "../services";
+import { finishMatch } from "../services";
+import { addResults } from "./../redux/actions/userActions";
 
 class EditMatch extends React.Component {
-	//navigateToTodolist = () => this.props.history.push("/todolist");
 
 	constructor(props) {
 		super(props);
 
 		this.state = {
+            matchId: "",
             team1: {
                 id: "",
                 players:[]
@@ -66,23 +67,21 @@ class EditMatch extends React.Component {
 		const name = event.target.name;
 		this.setState({ [name]: event.target.value });
 	};
-/*
+
 	onSubmit = event => {
 		event.preventDefault();
-		const { team1, team2, events } = this.state;
-		
-		if (password !== confirmPassword) {
-			this.setState({ confirmPassword: "", password: "" });
-			return;
-		}
+		const { matchId, team1, team2, events } = this.state;
 		
 		finishMatch({
+            matchId,
 			team1,
 			team2,
 			events
 		})
 			.then(result => {
-				alert("SUCCESS");
+                
+                this.props.addResults(result.data);
+				alert("SUCCESS finishMatch");
 				console.log(result);
 			})
 			.catch(err => {
@@ -91,7 +90,7 @@ class EditMatch extends React.Component {
 			});
 			
 	};
-*/
+
 	render() {
 		const { team1, team2, events } = this.state;
 
@@ -164,4 +163,14 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps)(EditMatch);
+const mapDispatchToProps = dispatch => {
+	return {
+		addResults: result => {
+			//dispatch llama a reducers
+			dispatch(addResults(result));
+		},
+		dispatch
+	};
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(EditMatch);

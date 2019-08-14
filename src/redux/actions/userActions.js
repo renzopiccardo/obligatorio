@@ -44,18 +44,18 @@ export function confirmChampionship(user) {
 	};
 }
 
-export function getAllTeams(championshipId) {
+export function getAllTeams(teams) {
 	//
 	return {
 		type: ACTIONS.GET_ALL_TEAMS_BY_CHAMPIONSHIP,
-		championshipId
+		teams
 	};
 }
 
-export function getAllMatches(championshipId) {
+export function getAllMatches(matches) {
 	//
 	return {
 		type: ACTIONS.GET_ALL_MATCHES_BY_CHAMPIONSHIP,
-		championshipId
+		matches
 	};
 }

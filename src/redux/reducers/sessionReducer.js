@@ -2,6 +2,7 @@ import { ACTIONS } from "../../constants";
 
 const initialState = {
 	user: undefined,
+	championshipId: undefined,
 	teams: [],
 	matches: []
 };
@@ -15,23 +16,21 @@ export default function sessionReducer(state = initialState, action) {
 		case ACTIONS.ADD_TEAM:
 			return { ...state, teams: [...state.teams, action.team]	}
 		case ACTIONS.ADD_RESULTS:
-				return state.matches.map((item, index) => {
-					// Find the item with the matching id
-					if(item.id === action.payload.userId) {
-					  // Return a new object
-					  return {
-						...item,  // copy the existing item
-						email: action.payload.newEmail  // replace the email addr
-					  }
+			return state.matches.map((item, index) => {
+				if(item._id === action.matchId) {
+					return {
+					...item,  // copy the existing item
+					team1: action.team1,  // replace
+					team2: action.team2, 
+					events: action.events, 
 					}
-				
-					// Leave every other item unchanged
-					return item;
-				  });
+				}
+				return item; //return default
+				});
 		case ACTIONS.GET_ALL_TEAMS_BY_CHAMPIONSHIP:
-			return { ...state, teams: [...state.teams, action.team]	}//foreach?
+			return { ...state, teams: action.teams }//foreach?
 		case ACTIONS.GET_ALL_MATCHES_BY_CHAMPIONSHIP:
-				return { ...state, matches: [...state.matches, action.match]	}//foreach?
+			return { ...state, matches: action.matches }//foreach?
 		default:
 			return state;
 	}
