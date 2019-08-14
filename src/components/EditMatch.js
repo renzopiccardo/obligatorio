@@ -16,8 +16,6 @@ import { finishMatch, getTeam } from "../services";
 import { addResults } from "./../redux/actions/userActions";
 import PlayerForm from "./../components/PlayerForm";
 import PlayerList from "./../components/PlayerList";
-import PlayerList1 from "./../components/PlayerList1";
-import PlayerList2 from "./../components/PlayerList2";
 import PlayerSelect from "./PlayerSelect";
 
 class EditMatch extends React.Component {
@@ -32,7 +30,10 @@ class EditMatch extends React.Component {
 			players1: [],
 			players2: [],
 			fullTeam1: [],
-			fullTeam2: []
+			fullTeam2: [],
+			tipo: "",
+			jugador: "",
+			minuto: ""
 		};
 		/*
 		"team1": {
@@ -114,7 +115,20 @@ class EditMatch extends React.Component {
 		this.setState({ [name]: event.target.value });
 	};
 
-	onSubmit = event => {
+	onClickEvento = event => {
+		alert("onClickEvento");
+		const { jugador, minuto, tipo } = this.state;
+		let events = [...this.state.events];
+		events.push({ playerId: jugador, minute: minuto, type: tipo });
+		this.setState({ events });
+		this.setState({
+			jugador: "",
+			minuto: "",
+			tipo: ""
+		});
+	};
+
+	onSubmitt = event => {
 		event.preventDefault();
 		const { matchId, team1, team2, events } = this.state;
 
@@ -143,7 +157,10 @@ class EditMatch extends React.Component {
 			players1,
 			players2,
 			fullTeam1,
-			fullTeam2
+			fullTeam2,
+			jugador,
+			tipo,
+			minuto
 		} = this.state;
 
 		return !this.props.isUserLogged ? (
@@ -165,14 +182,42 @@ class EditMatch extends React.Component {
 						<PlayerList players={players2} deletePlayer={this.deletePlayer} />
 					</div>
 				</div>
-				<form onSubmit={this.onSubmit}>
+				<div>
 					<div className="row mt-2">
 						<div className="col-4">
-							<label>Evento</label>
+							<label>tipo</label>
+							<select
+								name="tipo"
+								onChange={this.handleChange}
+								className="form-control"
+								value={tipo}
+							>
+								<option value="GOAL">GOAL</option>
+								<option value="OWN_GOAL">OWN_GOAL</option>
+								<option value="YELLOW_CARD">YELLOW_CARD</option>
+								<option value="RED_CARD">RED_CARD</option>
+							</select>
+						</div>
+
+						<div className="col-4">
+							<select
+								name="jugador"
+								onChange={this.handleChange}
+								className="form-control"
+								value={jugador}
+							>
+								<PlayerSelect players={players1.concat(players2)} />
+							</select>
+						</div>
+
+						<div className="col-4">
+							<label>Minuto</label>
 							<input
-								type="text"
-								name="events"
-								value={events} //
+								type="number"
+								min="0"
+								max="90"
+								name="minuto"
+								value={minuto}
 								onChange={this.handleChange}
 								className="form-control"
 								required
@@ -180,20 +225,22 @@ class EditMatch extends React.Component {
 						</div>
 					</div>
 
-					<div className="row mt-2">
-						<div className="col-4">
-							<select>
-								<PlayerSelect players={players1.concat(players2)} />
-							</select>
+					<div className="row mt-4">
+						<div className="col">
+							<button onClick={this.onClickEvento} className="btn btn-primary">
+								Agregar evento
+							</button>
 						</div>
 					</div>
 
 					<div className="row mt-4">
 						<div className="col">
-							<button className="btn btn-primary">Guardar cambios</button>
+							<button onClick={this.onSubmitt} className="btn btn-primary">
+								Guardar partido
+							</button>
 						</div>
 					</div>
-				</form>
+				</div>
 			</div>
 		);
 	}

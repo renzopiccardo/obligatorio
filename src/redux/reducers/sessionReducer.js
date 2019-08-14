@@ -14,23 +14,24 @@ export default function sessionReducer(state = initialState, action) {
 		case ACTIONS.LOGIN:
 			return { ...state, user: action.user };
 		case ACTIONS.ADD_TEAM:
-			return { ...state, teams: [...state.teams, action.team]	}
+			return { ...state, teams: [...state.teams, action.team] };
 		case ACTIONS.ADD_RESULTS:
-			return state.matches.map((item, index) => {
-				if(item._id === action.matchId) {
+			let partidos = state.matches.map((item, index) => {
+				if (item._id === action.matchId) {
 					return {
-					...item,  // copy the existing item
-					team1: action.team1,  // replace
-					team2: action.team2, 
-					events: action.events, 
-					}
+						...item, // copy the existing item
+						team1: action.team1, // replace
+						team2: action.team2,
+						events: action.events
+					};
 				}
 				return item; //return default
-				});
+			});
+			return { ...state, matches: partidos };
 		case ACTIONS.GET_ALL_TEAMS_BY_CHAMPIONSHIP:
-			return { ...state, teams: action.teams }//foreach?
+			return { ...state, teams: action.teams }; //foreach?
 		case ACTIONS.GET_ALL_MATCHES_BY_CHAMPIONSHIP:
-			return { ...state, matches: action.matches }//foreach?
+			return { ...state, matches: action.matches }; //foreach?
 		default:
 			return state;
 	}
