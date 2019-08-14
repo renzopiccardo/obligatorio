@@ -117,6 +117,7 @@ export function finishMatch({ matchId, team1, team2, events }) {
 }
 
 export function getAllMatchesByChampionshipId(championshipId) {
+  //https://taller-frontend.herokuapp.com/api/match/getAllbyChampionshipId/5d4b7943b5f1650017f37f4e
 	return axios.get(
 		`${API_HOST}/match/getAllByChampionshipId/${championshipId}`
 	);

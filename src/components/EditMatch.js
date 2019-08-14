@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { isUserLogged, getChampionshipId } from "./../selectors/userSelectors";
+import { isUserLogged, getChampionshipId, getUser } from "./../selectors/userSelectors";
 import {
 	BrowserRouter as Router,
 	Route,

@@ -28,11 +28,11 @@ export function addTeam(team) {
 	};
 }
 
-export function addResults(team) {
+export function addResults(result) {
 	//
 	return {
 		type: ACTIONS.ADD_RESULTS,
-		team
+		result
 	};
 }
 
@@ -48,6 +48,14 @@ export function getAllTeams(championshipId) {
 	//
 	return {
 		type: ACTIONS.GET_ALL_TEAMS_BY_CHAMPIONSHIP,
+		championshipId
+	};
+}
+
+export function getAllMatches(championshipId) {
+	//
+	return {
+		type: ACTIONS.GET_ALL_MATCHES_BY_CHAMPIONSHIP,
 		championshipId
 	};
 }

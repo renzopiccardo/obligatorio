@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
-import { isUserLogged, getChampionshipId } from "./../selectors/userSelectors";
+import { isUserLogged, getChampionshipId, getUser } from "./../selectors/userSelectors";
 import {
 	BrowserRouter as Router,
 	Route,
@@ -8,7 +8,9 @@ import {
 	Redirect,
 	withRouter
 } from "react-router-dom";
-import { getAllTeamsByChampionshipId } from "../services";
+import { getAllTeamsByChampionshipId, getAllMatchesByChampionshipId } from "../services";
+import EditMatch from "./../components/EditMatch";
+import { addResults } from "./../redux/actions/userActions";
 
 class AddResults extends React.Component {
 
@@ -34,6 +36,19 @@ class AddResults extends React.Component {
 				alert("ERROR");
 				console.log(err);
 			});
+
+		getAllMatchesByChampionshipId({
+			championshipId: this.props.championshipId._id,
+		})
+			.then(result => {
+				this.props.getAllMatches(result.data);
+				alert("SUCCESS getAllMatchesByChampionshipId");
+				console.log(result);
+			})
+			.catch(err => {
+				alert("ERROR");
+				console.log(err);
+			});
 	}
 
 	handleChange = event => {
@@ -42,21 +57,19 @@ class AddResults extends React.Component {
 	};
 
 	render() {
-		const { team1, team2, events } = this.state;
+		const { teams, matches } = this.state;
 
 		return !this.props.isUserLogged ? (
 			<Redirect to="/" />
 		) : (
-				props.players.map(
-					({ name, lastName, birthDate, number }, index) => (
+				matches.map(
+					({ team1, team2, events }, index) => (
 						<Fragment key={index}>
 							<hr />
-							<Player
-								name={name}
-								lastName={lastName}
-								birthDate={birthDate}
-								number={number}
-								deletePlayer={props.deletePlayer}
+							<EditMatch
+								team1={team1}
+								team2={team2}
+								events={events}
 							/>
 						</Fragment>
 					)
@@ -75,4 +88,14 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps)(AddResults);
+const mapDispatchToProps = dispatch => {
+	return {
+		addResults: result => {
+			//dispatch llama a reducers
+			dispatch(addResults(result));
+		},
+		dispatch
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddResults);
