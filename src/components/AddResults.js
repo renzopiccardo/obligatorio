@@ -44,6 +44,22 @@ class AddResults extends React.Component {
 		  */
 	}
 
+	componentDidMount() {
+		getAllTeamsByChampionshipId({
+			team1,
+			team2,
+			events
+		})
+			.then(result => {
+				alert("SUCCESS");
+				console.log(result);
+			})
+			.catch(err => {
+				alert("ERROR");
+				console.log(err);
+			});
+	}
+
 	handleChange = event => {
 		const name = event.target.name;
 		this.setState({ [name]: event.target.value });
