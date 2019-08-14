@@ -6,6 +6,10 @@ export const getUser = state => {
 	return state.session.user;
 };
 
+export const getChampionshipId = state => {
+	return state.session.user.championship;//
+};
+
 export const getNumberOfTeams = state => {
 	return state.session.teams.length;
 };

@@ -44,10 +44,10 @@ export function confirmChampionship(user) {
 	};
 }
 
-export function getAllTeams(user) {
+export function getAllTeams(championshipId) {
 	//
 	return {
 		type: ACTIONS.GET_ALL_TEAMS_BY_CHAMPIONSHIP,
-		user
+		championshipId
 	};
 }
