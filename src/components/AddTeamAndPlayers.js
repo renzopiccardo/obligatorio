@@ -12,6 +12,7 @@ import { addTeam } from "./../redux/actions/userActions";
 import { addTeamAndPlayersFN } from "./../services";
 import PlayerForm from "./../components/PlayerForm";
 import PlayerList from "./../components/PlayerList";
+import ConfirmChampionship from "./../components/ConfirmChampionship";
 
 class AddTeamAndPlayers extends React.Component {
 	//navigateToTodolist = () => this.props.history.push("/todolist");
@@ -26,7 +27,7 @@ class AddTeamAndPlayers extends React.Component {
 			players: []
 		};
 	}
-/* 
+	/* 
 	componentDidUpdate(prevProps) {
 		if(prevProps.variableInProps !== this.props.variableInProps){
 		  this.setState({variableInState: this.props.variableInProps })
@@ -41,7 +42,7 @@ class AddTeamAndPlayers extends React.Component {
 	addPlayerFN = player => {
 		let players = [...this.state.players];
 		players.push(player);
-		this.setState({players})
+		this.setState({ players });
 		//this.props.dispatch(userActions.addPlayer(player));
 		//...state, players: [...state.players, action.player]
 	};
@@ -49,18 +50,13 @@ class AddTeamAndPlayers extends React.Component {
 	deletePlayer = number => {
 		//this.props.dispatch(deletePlayer(numero));
 		let players = [...this.state.players];
-		players =  players.filter(p => p.number !== number);;
-		this.setState({players})
+		players = players.filter(p => p.number !== number);
+		this.setState({ players });
 	};
 
 	onSubmit = event => {
 		event.preventDefault();
-		const {
-			name,
-			primaryColor,
-			secondaryColor,
-			players
-		} = this.state;
+		const { name, primaryColor, secondaryColor, players } = this.state;
 		/*
 		if (password !== confirmPassword) {
 			this.setState({ confirmPassword: "", password: "" });
@@ -69,13 +65,13 @@ class AddTeamAndPlayers extends React.Component {
 		*/
 
 		////if(players.length >= 5){
-			addTeamAndPlayersFN({
-				userId: this.props.user._id, 
-				name,
-				primaryColor,
-				secondaryColor,
-				players
-			})
+		addTeamAndPlayersFN({
+			userId: this.props.user._id,
+			name,
+			primaryColor,
+			secondaryColor,
+			players
+		})
 			.then(result => {
 				this.props.addTeam(result.data);
 				alert("SUCCESS addTeam");
@@ -85,26 +81,20 @@ class AddTeamAndPlayers extends React.Component {
 				alert("ERROR en onSubmit - addTeamAndPlayers");
 				console.log(err);
 			});
-				
+
 		//}
 		//else{
 		//	alert("Debe agregar al menos 5 jugadores");
 		//}
 	};
-		
-		render() {
-		const {
-			name,
-			primaryColor,
-			secondaryColor,
-			players
-		} = this.state;
+
+	render() {
+		const { name, primaryColor, secondaryColor, players } = this.state;
 
 		return !this.props.isUserLogged ? (
 			<Redirect to="/" />
 		) : (
 			<div className="mt-4">
-
 				<div className="row mt-4">
 					<div className="col">
 						<PlayerForm addPlayerFN={this.addPlayerFN} />
@@ -164,6 +154,11 @@ class AddTeamAndPlayers extends React.Component {
 					</div>
 				</div>
 
+				<div className="row mt-4">
+					<div className="col">
+						<ConfirmChampionship />
+					</div>
+				</div>
 			</div>
 		);
 	}

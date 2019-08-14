@@ -8,7 +8,7 @@ import {
 	Redirect,
 	withRouter
 } from "react-router-dom";
-import { addResults } from "../services";
+import { finishMatch } from "../services";
 
 class AddResults extends React.Component {
 	//navigateToTodolist = () => this.props.history.push("/todolist");
@@ -51,18 +51,14 @@ class AddResults extends React.Component {
 
 	onSubmit = event => {
 		event.preventDefault();
-		const {
-			team1,
-			team2,
-			events
-		} = this.state;
+		const { team1, team2, events } = this.state;
 		/*
 		if (password !== confirmPassword) {
 			this.setState({ confirmPassword: "", password: "" });
 			return;
 		}
 		*/
-		addResults({
+		finishMatch({
 			team1,
 			team2,
 			events
@@ -78,11 +74,7 @@ class AddResults extends React.Component {
 	};
 
 	render() {
-		const {
-			team1,
-			team2,
-			events
-		} = this.state;
+		const { team1, team2, events } = this.state;
 
 		return !this.props.isUserLogged ? (
 			<Redirect to="/" />
@@ -94,7 +86,7 @@ class AddResults extends React.Component {
 							<label>Equipo 1</label>
 							<input
 								type="text"
-								name="name"
+								name="team1"
 								value={team1}
 								onChange={this.handleChange}
 								className="form-control"
@@ -109,12 +101,11 @@ class AddResults extends React.Component {
 							<label>Equipo 2</label>
 							<input
 								type="text"
-								name="name"
+								name="team2"
 								value={team2}
 								onChange={this.handleChange}
 								className="form-control"
 								required
-								
 							/>
 						</div>
 					</div>
@@ -124,19 +115,18 @@ class AddResults extends React.Component {
 							<label>Evento</label>
 							<input
 								type="text"
-								name="name"
-								value={events}//
+								name="events"
+								value={events} //
 								onChange={this.handleChange}
 								className="form-control"
 								required
-								
 							/>
 						</div>
 					</div>
 
 					<div className="row mt-4">
 						<div className="col">
-							<button className="btn btn-primary">Añadir resultados</button>
+							<button className="btn btn-primary">Aï¿½adir resultados</button>
 						</div>
 					</div>
 				</form>

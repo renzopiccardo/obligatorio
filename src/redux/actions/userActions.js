@@ -35,3 +35,19 @@ export function addResults(team) {
 		team
 	};
 }
+
+export function confirmChampionship(user) {
+	//
+	return {
+		type: ACTIONS.CONFIRM_CHAMPIONSHIP,
+		user
+	};
+}
+
+export function getAllTeams(user) {
+	//
+	return {
+		type: ACTIONS.GET_ALL_TEAMS_BY_CHAMPIONSHIP,
+		user
+	};
+}

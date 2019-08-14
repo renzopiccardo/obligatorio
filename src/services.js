@@ -35,9 +35,9 @@ export function logOutUser({ userId }) {
 	);
 }
 
-export function confirmChampionship({ userId }) {
+export function confirmChampionshipFN({ userId }) {
 	return axios.post(
-		`${API_HOST}/confirmChampionship/${userId}`,
+		`${API_HOST}/user/confirmChampionship/${userId}`,
 		{ userId },
 		{
 			headers: {
@@ -57,7 +57,6 @@ export function addTeamAndPlayersFN({
 }) {
 	//alert(userId + " " + name + " " + primaryColor + " " + secondaryColor + " " + players[0].birthDate);
 	return axios.post(
-		
 		`${API_HOST}/team/${userId}`,
 		{ name, primaryColor, secondaryColor, players },
 		{
@@ -82,16 +81,16 @@ export function getMatch(matchId) {
 	return axios.get(`${API_HOST}/match/${matchId}`);
 }
 
-export function finishMatch(matchId) {
+export function finishMatch({ matchId, team1, team2, events }) {
 	return axios.put(
-      `${API_HOST}/match/${matchId}`,
-      { team1, team2, events },
-      {
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }
-    );
+		`${API_HOST}/match/${matchId}`,
+		{ team1, team2, events },
+		{
+			headers: {
+				"Content-Type": "application/json"
+			}
+		}
+	);
 	/*
 	{
   "team1": {
@@ -122,5 +121,3 @@ export function getAllMatchesByChampionshipId(championshipId) {
 		`${API_HOST}/match/getAllByChampionshipId/${championshipId}`
 	);
 }
-
-

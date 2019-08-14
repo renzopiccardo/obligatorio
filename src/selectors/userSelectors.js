@@ -1,10 +1,15 @@
 export const isUserLogged = state => {
-  return !!state.session.user;
+	return !!state.session.user;
 };
-
 
 export const getUser = state => {
-  return state.session.user;
+	return state.session.user;
 };
 
+export const getNumberOfTeams = state => {
+	return state.session.teams.length;
+};
 
+export const isChampionshipConfirmed = state => {
+	return !!state.session.user.championship.isConfirmed;
+};
