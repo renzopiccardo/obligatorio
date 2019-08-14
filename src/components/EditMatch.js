@@ -8,7 +8,7 @@ import {
 	Redirect,
 	withRouter
 } from "react-router-dom";
-import { finishMatch } from "../services";
+import { finishMatch, getTeam } from "../services";
 import { addResults } from "./../redux/actions/userActions";
 
 class EditMatch extends React.Component {
@@ -17,16 +17,12 @@ class EditMatch extends React.Component {
 		super(props);
 
 		this.state = {
-            matchId: "",
-            team1: {
-                id: "",
-                players:[]
-            },
-            team2: {
-                id: "",
-                players:[]
-            },
-			events: []
+            matchId: props.matchId,
+            team1: props.team1,
+            team2: props.team2,
+            events: props.events,
+            fullTeam1: [],
+            fullTeam2: []
 		};
 		/*
 		"team1": {
@@ -49,7 +45,35 @@ class EditMatch extends React.Component {
 			}
 		  ]
 		  */
-	}
+    }
+    
+    componentDidMount() {
+        const { team1, team2 } = this.state;
+		getTeam( { teamId: team1.id } )
+			.then(result => {
+				let fullTeam1 = [...this.state.fullTeam1];
+				fullTeam1 = result.data;
+				this.setState({ fullTeam1 });
+				alert("SUCCESS getTeam 1");
+				console.log(result);
+			})
+			.catch(err => {
+				alert("ERROR");
+				console.log(err);
+            });
+        getTeam( { teamId: team2.id } )
+            .then(result => {
+                let fullTeam2 = [...this.state.fullTeam2];
+                fullTeam2 = result.data;
+                this.setState({ fullTeam2 });
+                alert("SUCCESS getTeam 2");
+                console.log(result);
+            })
+            .catch(err => {
+                alert("ERROR");
+                console.log(err);
+            });
+    }
 
 	addPlayerTeam1 = player => {
 		let players = [...this.state.team1.players];
@@ -98,35 +122,9 @@ class EditMatch extends React.Component {
 			<Redirect to="/" />
 		) : (
 			<div>
+                <h2>Editar resultados {team1.name} vs {team2.name}</h2>
 				<form onSubmit={this.onSubmit}>
-					<div className="row mt-2">
-						<div className="col-4">
-							<label>Equipo 1</label>
-							<input
-								type="text"
-								name="team1"
-								value={team1}
-								onChange={this.handleChange}
-								className="form-control"
-								required
-								autoFocus
-							/>
-						</div>
-					</div>
-
-					<div className="row mt-2">
-						<div className="col-4">
-							<label>Equipo 2</label>
-							<input
-								type="text"
-								name="team2"
-								value={team2}
-								onChange={this.handleChange}
-								className="form-control"
-								required
-							/>
-						</div>
-					</div>
+					
 
 					<div className="row mt-2">
 						<div className="col-4">
@@ -144,7 +142,7 @@ class EditMatch extends React.Component {
 
 					<div className="row mt-4">
 						<div className="col">
-							<button className="btn btn-primary">A�adir resultados</button>
+							<button className="btn btn-primary">Guardar cambios</button>
 						</div>
 					</div>
 				</form>

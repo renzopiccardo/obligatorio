@@ -53,56 +53,9 @@ class PlayerForm extends React.Component {
 							{/* {people.map(DropDownSelect)} https://stackoverflow.com/questions/40075281/how-to-create-custom-dropdown-field-component-with-redux-form-v6*/}
 						</Field>
 					</div>
-
-					<div className="row">
-						<div className="col-3">
-							<label>Nombre</label>
-							<input
-								className="form-control"
-								type="text"
-								placeholder="Ingrese el nombre..."
-								name="name"
-								value={name}
-								onChange={this.handleChange}
-							/>
-						</div>
-
-						<div className="col-3">
-							<label>Apellido</label>
-							<input
-								className="form-control"
-								type="text"
-								placeholder="Ingrese el apellido..."
-								name="lastName"
-								value={lastName}
-								onChange={this.handleChange}
-							/>
-						</div>
-						<div className="col-3">
-							<label>Fecha de nacimiento</label>
-							<input
-								className="form-control"
-								type="date"
-								placeholder="Ingrese la fecha de nacimiento..."
-								name="birthDate"
-								value={birthDate}
-								onChange={this.handleChange}
-							/>
-						</div>
-						<div className="col-3">
-							<label>Numero</label>
-							<input
-								className="form-control"
-								type="number"
-								placeholder="Ingrese el numero..."
-								name="number"
-								value={number}
-								onChange={this.handleChange}
-							/>
-						</div>
-						<div className="col-sm-3 mt-4">
-							<button className="btn btn-block btn-primary">Agregar</button>
-						</div>
+					
+					<div className="col-sm-3 mt-4">
+						<button className="btn btn-block btn-primary">Agregar</button>
 					</div>
 				</form>
 			</div>

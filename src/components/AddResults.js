@@ -67,13 +67,14 @@ class AddResults extends React.Component {
 			<Redirect to="/" />
 		) : (
 				matches.map(
-					({ team1, team2, events }, index) => (
+					({ team1, team2, events, _id }, index) => (
 						<Fragment key={index}>
 							<hr />
 							<EditMatch
 								team1={team1}
 								team2={team2}
 								events={events}
+								matchId={_id}
 							/>
 						</Fragment>
 					)
