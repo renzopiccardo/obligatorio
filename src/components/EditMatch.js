@@ -1,6 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { isUserLogged, getChampionshipId, getUser } from "./../selectors/userSelectors";
+import {
+	isUserLogged,
+	getChampionshipId,
+	getUser
+} from "./../selectors/userSelectors";
 import {
 	BrowserRouter as Router,
 	Route,
@@ -10,21 +14,25 @@ import {
 } from "react-router-dom";
 import { finishMatch, getTeam } from "../services";
 import { addResults } from "./../redux/actions/userActions";
-import PlayerForm2 from "./../components/PlayerForm2";
+import PlayerForm from "./../components/PlayerForm";
 import PlayerList from "./../components/PlayerList";
+import PlayerList1 from "./../components/PlayerList1";
+import PlayerList2 from "./../components/PlayerList2";
+import PlayerSelect from "./PlayerSelect";
 
 class EditMatch extends React.Component {
-
 	constructor(props) {
 		super(props);
 
 		this.state = {
-            matchId: props.matchId,
-            team1: props.team1,
-            team2: props.team2,
-            events: props.events,
-            fullTeam1: [],
-            fullTeam2: []
+			matchId: props.matchId,
+			team1: props.team1,
+			team2: props.team2,
+			events: props.events,
+			players1: [],
+			players2: [],
+			fullTeam1: [],
+			fullTeam2: []
 		};
 		/*
 		"team1": {
@@ -47,43 +55,49 @@ class EditMatch extends React.Component {
 			}
 		  ]
 		  */
-    }
-    
-    componentDidMount() {
-        const { team1, team2 } = this.state;
-		getTeam( { teamId: team1.id } )
+	}
+
+	componentDidMount() {
+		const { team1, team2 } = this.state;
+		getTeam({ teamId: team1.id })
 			.then(result => {
+				let players1 = [...this.state.players1];
+				players1 = result.data.players;
+				this.setState({ players1 });
 				let fullTeam1 = [...this.state.fullTeam1];
 				fullTeam1 = result.data;
 				this.setState({ fullTeam1 });
-				alert("SUCCESS getTeam 1");
+				//alert("SUCCESS getTeam 1");
 				console.log(result);
 			})
 			.catch(err => {
 				alert("ERROR");
 				console.log(err);
-            });
-        getTeam( { teamId: team2.id } )
-            .then(result => {
-                let fullTeam2 = [...this.state.fullTeam2];
-                fullTeam2 = result.data;
-                this.setState({ fullTeam2 });
-                alert("SUCCESS getTeam 2");
-                console.log(result);
-            })
-            .catch(err => {
-                alert("ERROR");
-                console.log(err);
-            });
-    }
+			});
+		getTeam({ teamId: team2.id })
+			.then(result => {
+				let players2 = [...this.state.players2];
+				players2 = result.data.players;
+				this.setState({ players2 });
+				let fullTeam2 = [...this.state.fullTeam2];
+				fullTeam2 = result.data;
+				this.setState({ fullTeam2 });
+				//alert("SUCCESS getTeam 2");
+				console.log(result);
+			})
+			.catch(err => {
+				alert("ERROR");
+				console.log(err);
+			});
+	}
 
 	addPlayerTeam1 = player => {
 		let players = [...this.state.team1.players];
 		players.push(player);
 		this.setState({ players });
-    };
-    
-    addPlayerTeam2 = player => {
+	};
+
+	addPlayerTeam2 = player => {
 		let players = [...this.state.team2.players];
 		players.push(player);
 		this.setState({ players });
@@ -103,16 +117,15 @@ class EditMatch extends React.Component {
 	onSubmit = event => {
 		event.preventDefault();
 		const { matchId, team1, team2, events } = this.state;
-		
+
 		finishMatch({
-            matchId,
+			matchId,
 			team1,
 			team2,
 			events
 		})
 			.then(result => {
-                
-                this.props.addResults(result.data);
+				this.props.addResults(result.data);
 				alert("SUCCESS finishMatch");
 				console.log(result);
 			})
@@ -120,32 +133,39 @@ class EditMatch extends React.Component {
 				alert("ERROR");
 				console.log(err);
 			});
-			
 	};
 
 	render() {
-		const { team1, team2, events, fullTeam1, fullTeam2 } = this.state;
+		const {
+			team1,
+			team2,
+			events,
+			players1,
+			players2,
+			fullTeam1,
+			fullTeam2
+		} = this.state;
 
 		return !this.props.isUserLogged ? (
 			<Redirect to="/" />
 		) : (
 			<div>
-                <h2>Editar resultados {team1.name} vs {team2.name}</h2>
-                <div className="row mt-4">
+				<h2>
+					Editar resultados {fullTeam1.name} vs {fullTeam2.name}
+				</h2>
+				<div className="row mt-4">
+					<h3>Jugadores {fullTeam1.name}</h3>
 					<div className="col">
-						<PlayerForm2 addPlayerTeam1={this.addPlayerTeam1} />
-						<PlayerList players={fullTeam1} deletePlayer={this.deletePlayer} />
+						<PlayerList players={players1} deletePlayer={this.deletePlayer} />
 					</div>
 				</div>
-                <div className="row mt-4">
+				<div className="row mt-4">
+					<h3>Jugadores {fullTeam2.name}</h3>
 					<div className="col">
-						<PlayerForm2 addPlayerTeam2={this.addPlayerTeam2} />
-						<PlayerList players={fullTeam2} deletePlayer={this.deletePlayer} />
+						<PlayerList players={players2} deletePlayer={this.deletePlayer} />
 					</div>
 				</div>
 				<form onSubmit={this.onSubmit}>
-					
-
 					<div className="row mt-2">
 						<div className="col-4">
 							<label>Evento</label>
@@ -157,6 +177,14 @@ class EditMatch extends React.Component {
 								className="form-control"
 								required
 							/>
+						</div>
+					</div>
+
+					<div className="row mt-2">
+						<div className="col-4">
+							<select>
+								<PlayerSelect players={players1.concat(players2)} />
+							</select>
 						</div>
 					</div>
 
@@ -191,4 +219,7 @@ const mapDispatchToProps = dispatch => {
 	};
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(EditMatch);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(EditMatch);
