@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 import { finishMatch, getTeam } from "../services";
 import { addResults } from "./../redux/actions/userActions";
+import PlayerForm2 from "./../components/PlayerForm2";
+import PlayerList from "./../components/PlayerList";
 
 class EditMatch extends React.Component {
 
@@ -79,6 +81,12 @@ class EditMatch extends React.Component {
 		let players = [...this.state.team1.players];
 		players.push(player);
 		this.setState({ players });
+    };
+    
+    addPlayerTeam2 = player => {
+		let players = [...this.state.team2.players];
+		players.push(player);
+		this.setState({ players });
 	};
 
 	deletePlayer = number => {
@@ -116,13 +124,25 @@ class EditMatch extends React.Component {
 	};
 
 	render() {
-		const { team1, team2, events } = this.state;
+		const { team1, team2, events, fullTeam1, fullTeam2 } = this.state;
 
 		return !this.props.isUserLogged ? (
 			<Redirect to="/" />
 		) : (
 			<div>
                 <h2>Editar resultados {team1.name} vs {team2.name}</h2>
+                <div className="row mt-4">
+					<div className="col">
+						<PlayerForm2 addPlayerTeam1={this.addPlayerTeam1} />
+						<PlayerList players={fullTeam1} deletePlayer={this.deletePlayer} />
+					</div>
+				</div>
+                <div className="row mt-4">
+					<div className="col">
+						<PlayerForm2 addPlayerTeam2={this.addPlayerTeam2} />
+						<PlayerList players={fullTeam2} deletePlayer={this.deletePlayer} />
+					</div>
+				</div>
 				<form onSubmit={this.onSubmit}>
 					
 

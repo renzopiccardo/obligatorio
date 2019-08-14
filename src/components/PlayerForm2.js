@@ -1,24 +1,23 @@
-import React from "react";
+import React, {Field} from "react";
+import PlayerSelect from "./PlayerSelect";
 
-class PlayerForm extends React.Component {
+class PlayerForm2 extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			name: "",
-			lastName: "",
-			birthDate: "",
-			number: ""
+			players: props.players,
+			player:""
 		};
 	}
 
 	submitAddPlayer = event => {
 		event.preventDefault();
 
-		const { addPlayerFN } = this.props;
-		const { name, lastName, birthDate, number } = this.state;
+		const { addPlayerTeam } = this.props;
+		const { player } = this.state;
 
-		addPlayerFN({ name, lastName, birthDate, number });
+		addPlayerTeam( player );
 
 		this.setState({
 			name: "",
@@ -34,20 +33,20 @@ class PlayerForm extends React.Component {
 	};
 
 	render() {
-		const { name, lastName, birthDate, number } = this.state;
+		const { players } = this.state;
 
 		return (
 			<div>
 				<h2>Agregar Jugador</h2>
 				<form onSubmit={this.submitAddPlayer}>
 					<div className="form-group">
-						<label htmlFor="dropDownSelect">Select an Option</label>
+						<label htmlFor="PlayerSelect">Select an Option</label>
 						<Field
-							name="dropDownSelect"
+							name="PlayerSelect"
 							// component="select"
-							label="dropDownSelect"
-							component={DropDownSelect}
-							people={people}
+							label="PlayerSelect"
+							component={PlayerSelect}
+							players={players}
 							className="form-control"
 						>
 							{/* {people.map(DropDownSelect)} https://stackoverflow.com/questions/40075281/how-to-create-custom-dropdown-field-component-with-redux-form-v6*/}
@@ -63,4 +62,4 @@ class PlayerForm extends React.Component {
 	}
 }
 
-export default PlayerForm;
+export default PlayerForm2;

@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from 'prop-types'
 
-class DropDownSelect extends React.Component {
+class PlayerSelect extends React.Component {
 	// eslint-disable-line react/prefer-stateless-function
 
 	renderSelectOptions = player => (
@@ -28,11 +29,21 @@ class DropDownSelect extends React.Component {
 //     <option key={person} value={person}>{person}</option>
 //   );
 // }
+/*
+App.propTypes = {
+ propArray: PropTypes.array.isRequired, 
+ propBool: PropTypes.bool.isRequired,
+ propFunc: PropTypes.func,
+ propNumber: PropTypes.number,
+ propString: PropTypes.string,
+ propObject: PropTypes.object
+}
 
-DropDownSelect.propTypes = {
+*/
+PlayerSelect.propTypes = {
 	players: React.PropTypes.array,
 	input: React.PropTypes.object,
 	label: React.PropTypes.string
 };
 
-export default DropDownSelect;
+export default PlayerSelect;
