@@ -30,9 +30,9 @@ export default function sessionReducer(state = initialState, action) {
 			});
 			return { ...state, matches: partidos };
 		case ACTIONS.GET_ALL_TEAMS_BY_CHAMPIONSHIP:
-			return { ...state, teams: action.teams }; //foreach?
+			return { ...state, teams: action.teams };
 		case ACTIONS.GET_ALL_MATCHES_BY_CHAMPIONSHIP:
-			return { ...state, matches: action.matches }; //foreach?
+			return { ...state, matches: action.matches }; 
 		case ACTIONS.GET_CHAMPIONSHIP_TABLE:
 
 			var jugadoresDatos = [];
@@ -63,6 +63,8 @@ export default function sessionReducer(state = initialState, action) {
 					switch(e.type){
 						case "GOAL":
 							jugadoresEquipo1.find(j => j.playerId === e.playerId) ? golesEquipo1++ : golesEquipo2++;
+							let jugador = jugadoresDatos.find(j => j._id === e.playerId);
+							jugador.goles++;
 							break;
 						case "OWN_GOAL":
 							jugadoresEquipo1.find(j => j.playerId === e.playerId) ? golesContraEquipo1++ : golesContraEquipo2++;
@@ -104,16 +106,12 @@ export default function sessionReducer(state = initialState, action) {
 					equipo2.puntos = equipo2.puntos + 3;
 				}
 				else if(golesEquipo1 === golesEquipo2){
-					equipo1 = equiposDatos.find(e => e.id === m.team1.id);
 					equipo1.puntos = equipo1.puntos++;
-					equipo2 = equiposDatos.find(e => e.id === m.team2.id);
 					equipo2.puntos = equipo2.puntos++;
 				}
 
-
 			});
-
-			return { ...state, matches: action.matches }; //foreach?
+			return { ...state, championshipTable: {teamsData: equiposDatos, playersData: jugadoresDatos} };
 		default:
 			return state;
 	}

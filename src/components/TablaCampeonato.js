@@ -33,6 +33,36 @@ const rows = [
 export default function SimpleTable() {
 	const classes = useStyles();
 
+	function ordenarCompletados2(equipo1,equipo2) {
+		if (equipo1.puntos > equipo2.puntos) {
+			return 1;
+		} else if (equipo1.puntos < equipo2.puntos) { 
+			return -1;
+		}
+	
+		if (equipo1.dg > equipo2.dg) { 
+			return 1;
+		} else if (equipo1.dg < equipo2.dg) {
+			return -1
+		}
+		
+		if (equipo1.gf > equipo2.gf) { 
+			return 1;
+		} else if (equipo1.gf < equipo2.gf) {
+			return -1
+		}
+		else { 
+			return 0;
+		}
+	}
+
+	const ordenarCompletados = (equipos) => {
+		return equipos.sort((a,b) => (a.puntos > b.puntos) ? 1 : ((b.puntos > a.puntos) ? -1 : 0));
+	}
+
+	const equipos = [];
+	const tablaOrdenada = equipos.sort(ordenarCompletados2());
+
 	return (
 		<Paper className={classes.root}>
 			<Table className={classes.table}>

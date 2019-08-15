@@ -33,6 +33,14 @@ const rows = [
 export default function SimpleTable() {
 	const classes = useStyles();
 
+	let jugadores = [];
+
+	const ordenarJugadores = (jugadores) => {
+		return jugadores.sort((a,b) => (a.goles > b.goles) ? 1 : ((b.goles > a.goles) ? -1 : 0));
+	}
+
+	const goleadoresOrdenados = jugadores.sort(ordenarJugadores()).slice(0, 10);
+
 	return (
 		<Paper className={classes.root}>
 			<Table className={classes.table}>

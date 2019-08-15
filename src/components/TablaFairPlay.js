@@ -33,6 +33,15 @@ const rows = [
 export default function SimpleTable() {
 	const classes = useStyles();
 
+	let equipos = [];
+
+	const ordenarFP = (equipos) => {
+		return equipos.sort((a,b) => (a.puntosAmarillas + a.puntosRojas < b.puntosAmarillas + b.puntosRojas) ? 1 :
+									((a.puntosAmarillas + a.puntosRojas > b.puntosAmarillas + b.puntosRojas) ? -1 : 0));
+	}
+
+	const equiposFPOrdenados = equipos.sort(ordenarFP());
+
 	return (
 		<Paper className={classes.root}>
 			<Table className={classes.table}>
