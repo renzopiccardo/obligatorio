@@ -192,6 +192,7 @@ class EditMatch extends React.Component {
 								className="form-control"
 								value={tipo}
 							>
+								<option value="" selected />
 								<option value="GOAL">GOAL</option>
 								<option value="OWN_GOAL">OWN_GOAL</option>
 								<option value="YELLOW_CARD">YELLOW_CARD</option>
@@ -206,6 +207,7 @@ class EditMatch extends React.Component {
 								className="form-control"
 								value={jugador}
 							>
+								<option value="" selected />
 								<PlayerSelect players={players1.concat(players2)} />
 							</select>
 						</div>

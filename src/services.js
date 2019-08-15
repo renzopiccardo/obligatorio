@@ -67,11 +67,11 @@ export function addTeamAndPlayersFN({
 	);
 }
 
-export function getTeam({teamId}) {
+export function getTeam({ teamId }) {
 	return axios.get(`${API_HOST}/team/${teamId}`);
 }
 
-export function getAllTeamsByChampionshipId({championshipId}) {
+export function getAllTeamsByChampionshipId({ championshipId }) {
 	return axios.get(`${API_HOST}/team/getAllByChampionshipId/${championshipId}`);
 }
 
@@ -116,8 +116,8 @@ export function finishMatch({ matchId, team1, team2, events }) {
 	*/
 }
 
-export function getAllMatchesByChampionshipId({championshipId}) {
-  //https://taller-frontend.herokuapp.com/api/match/getAllbyChampionshipId/5d4b7943b5f1650017f37f4e
+export function getAllMatchesByChampionshipId({ championshipId }) {
+	//https://taller-frontend.herokuapp.com/api/match/getAllbyChampionshipId/5d4b7943b5f1650017f37f4e
 	return axios.get(
 		`${API_HOST}/match/getAllByChampionshipId/${championshipId}`
 	);
