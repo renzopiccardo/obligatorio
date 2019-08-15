@@ -4,7 +4,8 @@ const initialState = {
 	user: undefined,
 	championshipId: undefined,
 	teams: [],
-	matches: []
+	matches: [],
+	championshipTable: undefined
 };
 
 export default function sessionReducer(state = initialState, action) {
@@ -32,7 +33,34 @@ export default function sessionReducer(state = initialState, action) {
 			return { ...state, teams: action.teams }; //foreach?
 		case ACTIONS.GET_ALL_MATCHES_BY_CHAMPIONSHIP:
 			return { ...state, matches: action.matches }; //foreach?
+		case ACTIONS.GET_CHAMPIONSHIP_TABLE:
+
+			return { ...state, matches: action.matches }; //foreach?
 		default:
 			return state;
 	}
 }
+
+/*
+    {
+        "team1": {
+            "players": [],
+            "id": "5d548d60eda2b30017746f03"
+        },
+        "team2": {
+            "players": [],
+            "id": "5d548e24eda2b30017746f53"
+        },
+        "_id": "5d548e27eda2b30017746f64",
+        "championshipId": "5d548d01eda2b30017746efa",
+        "events": [
+            {
+                "_id": "5d5491d6eda2b30017746ff3",
+                "playerId": "5d548d60eda2b30017746f07",
+                "minute": 9,
+                "type": "OWN_GOAL"
+            }
+        ],
+        "__v": 1
+    },
+*/

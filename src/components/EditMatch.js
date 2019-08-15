@@ -24,8 +24,8 @@ class EditMatch extends React.Component {
 
 		this.state = {
 			matchId: props.matchId,
-			team1: props.team1,
-			team2: props.team2,
+			team11: props.team11,
+			team22: props.team22,
 			events: props.events,
 			players1: [],
 			players2: [],
@@ -33,7 +33,7 @@ class EditMatch extends React.Component {
 			fullTeam2: [],
 			tipo: "",
 			jugador: "",
-			minuto: ""
+			minuto: 0
 		};
 		/*
 		"team1": {
@@ -59,8 +59,8 @@ class EditMatch extends React.Component {
 	}
 
 	componentDidMount() {
-		const { team1, team2 } = this.state;
-		getTeam({ teamId: team1.id })
+		const { team11, team22 } = this.state;
+		getTeam({ teamId: team11.id })
 			.then(result => {
 				let players1 = [...this.state.players1];
 				players1 = result.data.players;
@@ -75,7 +75,7 @@ class EditMatch extends React.Component {
 				alert("ERROR");
 				console.log(err);
 			});
-		getTeam({ teamId: team2.id })
+		getTeam({ teamId: team22.id })
 			.then(result => {
 				let players2 = [...this.state.players2];
 				players2 = result.data.players;
@@ -123,14 +123,16 @@ class EditMatch extends React.Component {
 		this.setState({ events });
 		this.setState({
 			jugador: "",
-			minuto: "",
+			minuto: 0,
 			tipo: ""
 		});
 	};
 
 	onSubmitt = event => {
 		event.preventDefault();
-		const { matchId, team1, team2, events } = this.state;
+		const { matchId, team11, team22, events, players1, players2 } = this.state;
+		let team1 = {id: team11.id, players: players1};
+		let team2 = {id: team22.id, players: players2};
 
 		finishMatch({
 			matchId,

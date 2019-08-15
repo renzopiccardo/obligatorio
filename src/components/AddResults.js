@@ -71,8 +71,8 @@ class AddResults extends React.Component {
 						<Fragment key={index}>
 							<hr />
 							<EditMatch
-								team1={team1}
-								team2={team2}
+								team11={team1}
+								team22={team2}
 								events={events}
 								matchId={_id}
 							/>

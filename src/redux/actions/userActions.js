@@ -59,3 +59,11 @@ export function getAllMatches(matches) {
 		matches
 	};
 }
+
+export function getChampionshipTable(matches) {
+	//
+	return {
+		type: ACTIONS.GET_CHAMPIONSHIP_TABLE,
+		matches
+	};
+}
