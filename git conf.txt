@@ -1,3 +1,4 @@
+git init (si no tiene .git)
 git add .
 git config --global user.name "Renzo P"
 git config --global user.email rp236804@fi365.ort.edu.uy
